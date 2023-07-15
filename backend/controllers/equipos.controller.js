@@ -32,8 +32,20 @@ const borrarEquipos = async(req, res)=>{
     }
 }
 
+const insertEquipos = async(req, res)=>{
+    const equipo = new Equipos(req.body);
+    try {
+        const nuevoEquipo = await equipo.save();
+        res.json(nuevoEquipo);
+    } catch (error) {
+        res.status(500);
+        res.json(error.message);
+    }
+}
+
 export {
     getEquipos,
     getOneEquipos,
-    borrarEquipos
+    borrarEquipos,
+    insertEquipos
 }
