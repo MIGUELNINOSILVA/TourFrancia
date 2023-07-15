@@ -20,13 +20,26 @@ const getOneCiclista = async (req, res) => {
     }
 }
 
-const deleteCiclista = async(req, res) => {
+const deleteCiclista = async (req, res) => {
     try {
-        await Ciclista.deleteOne({_id:req.params.id});
+        await Ciclista.deleteOne({ _id: req.params.id });
         res.status(200).send();
         res.json({
             "message": "Eliminado satisfactoriamente"
         });
+
+    } catch (error) {
+        res.status(500);
+        res.json(error);
+    }
+}
+
+const actualizarCiclista = async (req, res) => {
+    try {
+        const ciclistaActualizado = await Ciclista.findOneAndUpdate({ _id: req.params.id }, req.body, {
+            new: true
+        });
+        res.json(ciclistaActualizado);
     } catch (error) {
         res.status(500);
         res.json(error);
@@ -36,5 +49,6 @@ const deleteCiclista = async(req, res) => {
 export {
     getCiclista,
     getOneCiclista,
-    deleteCiclista
+    deleteCiclista,
+    actualizarCiclista
 }
