@@ -1,6 +1,6 @@
 import Equipos from "../model/Equipos.js";
 
-const getEquipos = async(req, res)=>{
+const getEquipos = async (req, res) => {
     try {
         const equipos = await Equipos.find();
         res.json(equipos);
@@ -10,9 +10,9 @@ const getEquipos = async(req, res)=>{
     }
 }
 
-const getOneEquipos = async(req, res)=>{
+const getOneEquipos = async (req, res) => {
     try {
-        const equipos = await Equipos.findOne({_id: req.params.id}); 
+        const equipos = await Equipos.findOne({ _id: req.params.id });
         res.json(equipos);
     } catch (error) {
         res.status(500);
@@ -20,9 +20,9 @@ const getOneEquipos = async(req, res)=>{
     }
 }
 
-const borrarEquipos = async(req, res)=>{
+const borrarEquipos = async (req, res) => {
     try {
-        await Equipos.deleteOne({_id: req.params.id});
+        await Equipos.deleteOne({ _id: req.params.id });
         res.json({
             "message": "Eliminado satisfactoriamente"
         })
@@ -32,7 +32,7 @@ const borrarEquipos = async(req, res)=>{
     }
 }
 
-const insertEquipos = async(req, res)=>{
+const insertEquipos = async (req, res) => {
     const equipo = new Equipos(req.body);
     try {
         const nuevoEquipo = await equipo.save();
@@ -43,9 +43,22 @@ const insertEquipos = async(req, res)=>{
     }
 }
 
+const updateEquipos = async (req, res) => {
+    try {
+        const updateEquipos = await Equipos.findOneAndUpdate({_id:req.params.id}, req.body,{
+            new:true
+        });
+        res.json(updateEquipos);
+    } catch (error) {
+        res.status(500);
+        res.json(error.message);
+    }
+}
+
 export {
     getEquipos,
     getOneEquipos,
     borrarEquipos,
-    insertEquipos
+    insertEquipos,
+    updateEquipos
 }
