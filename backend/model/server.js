@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import conectarDB from '../config/config.js';
 import ciclistasRouter from '../routes/ciclistas.routes.js';
+import equiposRouter from '../routes/equipos.routes.js';
 
 
 class Server {
@@ -10,6 +11,7 @@ class Server {
         this.port = process.env.PORT;
         //Paths
         this.ciclistaPath = "/api/ciclistas";
+        this.equiposPath = "/api/equipos";
         this.conectar();
         this.middlewares();
         this.routes();
@@ -30,6 +32,7 @@ class Server {
 
     routes(){
         this.app.use(this.ciclistaPath, ciclistasRouter);
+        this.app.use(this.equiposPath, equiposRouter); 
     }
 
     listen(){
