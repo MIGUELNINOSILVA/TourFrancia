@@ -34,6 +34,17 @@ const deleteCiclista = async (req, res) => {
     }
 }
 
+const insertCiclista = async (req, res) => {
+    const ciclista = new Ciclista(req.body);
+    try {
+        const nuevoCiclista = await ciclista.save();
+        res.json(nuevoCiclista);
+    } catch (error) {
+        res.status(500);
+        res.json(error.message);
+    }
+}
+
 const actualizarCiclista = async (req, res) => {
     try {
         const ciclistaActualizado = await Ciclista.findOneAndUpdate({ _id: req.params.id }, req.body, {
@@ -50,5 +61,6 @@ export {
     getCiclista,
     getOneCiclista,
     deleteCiclista,
-    actualizarCiclista
+    actualizarCiclista,
+    insertCiclista
 }

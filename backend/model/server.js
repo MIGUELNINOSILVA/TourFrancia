@@ -3,6 +3,7 @@ import cors from 'cors';
 import conectarDB from '../config/config.js';
 import ciclistasRouter from '../routes/ciclistas.routes.js';
 import equiposRouter from '../routes/equipos.routes.js';
+import etapasRouter from '../routes/etapas.routes.js';
 
 
 class Server {
@@ -12,6 +13,7 @@ class Server {
         //Paths
         this.ciclistaPath = "/api/ciclistas";
         this.equiposPath = "/api/equipos";
+        this.etapasPath = "/api/etapas";
         this.conectar();
         this.middlewares();
         this.routes();
@@ -32,7 +34,8 @@ class Server {
 
     routes(){
         this.app.use(this.ciclistaPath, ciclistasRouter);
-        this.app.use(this.equiposPath, equiposRouter); 
+        this.app.use(this.equiposPath, equiposRouter);
+        this.app.use(this.etapasPath, etapasRouter);
     }
 
     listen(){

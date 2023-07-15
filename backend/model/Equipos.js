@@ -18,7 +18,7 @@ const equiposSchema = mongoose.Schema({
         trim: true
     }
 },{
-    timestamp: true
+    timestamps: true
 });
 
 const Equipos = mongoose.model('Equipos',equiposSchema);

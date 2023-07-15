@@ -22,7 +22,7 @@ const ciclistasSchema = mongoose.Schema({
         trim: true
     }
 },{
-    timestamp: true
+    timestamps: true
 });
 
 const Ciclista = mongoose.model('Ciclistas', ciclistasSchema);
