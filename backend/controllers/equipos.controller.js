@@ -10,6 +10,17 @@ const getEquipos = async(req, res)=>{
     }
 }
 
+const getOneEquipos = async(req, res)=>{
+    try {
+        const equipos = await Equipos.findOne({_id: req.params.id}); 
+        res.json(equipos);
+    } catch (error) {
+        res.status(500);
+        res.json(error.message);
+    }
+}
+
 export {
-    getEquipos
+    getEquipos,
+    getOneEquipos
 }
