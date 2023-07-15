@@ -20,7 +20,21 @@ const getOneCiclista = async (req, res) => {
     }
 }
 
+const deleteCiclista = async(req, res) => {
+    try {
+        await Ciclista.deleteOne({_id:req.params.id});
+        res.status(200).send();
+        res.json({
+            "message": "Eliminado satisfactoriamente"
+        });
+    } catch (error) {
+        res.status(500);
+        res.json(error);
+    }
+}
+
 export {
     getCiclista,
-    getOneCiclista
+    getOneCiclista,
+    deleteCiclista
 }
