@@ -4,7 +4,7 @@ import conectarDB from '../config/config.js';
 import ciclistasRouter from '../routes/ciclistas.routes.js';
 import equiposRouter from '../routes/equipos.routes.js';
 import etapasRouter from '../routes/etapas.routes.js';
-
+import premiosRouter from '../routes/premios.routes.js';
 
 class Server {
     constructor(){
@@ -14,6 +14,7 @@ class Server {
         this.ciclistaPath = "/api/ciclistas";
         this.equiposPath = "/api/equipos";
         this.etapasPath = "/api/etapas";
+        this.premiosPath = "/api/premios";
         this.conectar();
         this.middlewares();
         this.routes();
@@ -36,6 +37,7 @@ class Server {
         this.app.use(this.ciclistaPath, ciclistasRouter);
         this.app.use(this.equiposPath, equiposRouter);
         this.app.use(this.etapasPath, etapasRouter);
+        this.app.use(this.premiosPath, premiosRouter);
     }
 
     listen(){
