@@ -13,8 +13,8 @@ router.post('/add', [
     check("nombre", "El nombre es Obligatorio, no válido").not().isEmpty(),
     check("nacionalidad", "Obligatorio ingresar nacionalidad, Nacionalidad no válida").not().isEmpty(),
     check("edad").custom((edad) => {
-        if (edad && edad < 20) {
-            throw new Error('La edad debe ser mayor a 20');
+        if (edad && edad < 18) {
+            throw new Error('La edad debe ser mayor a 18');
         }
         return true;
     }),
