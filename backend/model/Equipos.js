@@ -2,7 +2,7 @@ import e from "express";
 import mongoose from "mongoose";
 
 const equiposSchema = mongoose.Schema({
-    nombre: {
+    equipo: {
         type: String,
         required: true,
         trim: true
