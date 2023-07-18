@@ -1,4 +1,6 @@
 import Ciclista from "../model/Ciclistas.js";
+import bcryptjs from "bcryptjs";
+import { validationResult } from "express-validator";
 
 const getCiclista = async (req, res) => {
     try {
@@ -36,7 +38,13 @@ const deleteCiclista = async (req, res) => {
 
 const insertCiclista = async (req, res) => {
     const ciclista = new Ciclista(req.body);
+    const { nombre } = ciclista;
     try {
+        /* Verificar si el el cilista ya existe */
+        const existeCiclista = await Ciclista.findOne({ nombre });
+        if (existeCiclista) {
+            return res.status(400).json({ message: "Ciclista is registered already" });
+        }
         const nuevoCiclista = await ciclista.save();
         res.json(nuevoCiclista);
     } catch (error) {
